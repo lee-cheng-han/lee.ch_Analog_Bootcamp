@@ -10,3 +10,8 @@ Thumbs.db
 .venv/
 .tools/
 .tmp/
+
+analog/build/
+*.backup
+*.raw
+*.log
