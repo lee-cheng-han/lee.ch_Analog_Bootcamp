@@ -1,3 +1,19 @@
+### Single-Stage Op-Amp Performance Summary
+
+
+| Metric            | Value     | Target   | Result |
+|-------------------|-----------|----------|--------|
+| DC Gain           | 36.1 dB   | ≥ 20 dB  | Pass |
+| Input Offset      | 0.8 mV    | ≤ 5 mV   | Pass |
+| CMRR              | 63.1 dB   | ≥ 40 dB  | Pass |
+| Input Impedance   | ___ MΩ    | ≥ 1 MΩ   | TBD |
+| Output Impedance  | 3.5 kΩ    | ≤ 1 kΩ   | Fail |
+| Power Consumption | 0.0526 mW | ≤ 5 mW   | Pass |
+| Bandwidth (3 dB)  | 0.143 MHz | —        | — |
+| GBW               | 9.11 MHz  | —        | — |
+
+PASS/FAIL: TBD
+
 ## UWASIC Design Template
 
 A template for mixed-signal ASIC design using open-source tools, featuring automated workflows for digital, analog, and integration for TinyTapeout chip projects.
