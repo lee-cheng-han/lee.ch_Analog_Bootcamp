@@ -1,0 +1,16 @@
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Tools
+.venv/
+.tools/
+.tmp/
+
+*.backup
+*.raw
+*.log
