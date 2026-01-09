@@ -1,4 +1,5 @@
-v {xschem version=3.4.7 file_version=1.2}
+v {xschem version=3.4.4 file_version=1.2
+}
 G {}
 K {}
 V {}
@@ -42,8 +43,10 @@ C {devices/vsource.sym} -80 140 2 0 {value="dc 0 ac 1" name=VDIFF}
 C {devices/code_shown.sym} 230 -40 0 0 {name=s2
 only_toplevel=true
 value= " 
-.ac dec 100 1 1e6
-.plot 20*log10(mag(vout))
+.control
+ac dec 100 1 1e6
+plot 20*log10(mag(v(vout)))
+.endc
 "}
 C {opamp_single_stage.sym} 160 150 0 0 {name=x2}
 C {devices/opin.sym} 390 150 0 0 {name=p1 lab=VOUT}

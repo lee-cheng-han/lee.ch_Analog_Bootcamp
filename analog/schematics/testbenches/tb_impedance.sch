@@ -1,4 +1,5 @@
-v {xschem version=3.4.7 file_version=1.2}
+v {xschem version=3.4.4 file_version=1.2
+}
 G {}
 K {}
 V {}
@@ -28,12 +29,13 @@ C {devices/gnd.sym} -1560 -750 1 0 {name=l6 lab=GND}
 C {sky130_fd_pr/corner.sym} -870 -790 0 0 {name=CORNER1 only_toplevel=false corner=tt}
 C {devices/code_shown.sym} -1180 -790 0 0 {name=s1
 only_toplevel=true
-value= "
-.save all
+value= ".save all
 .op
 .ac dec 100 1 1e9
-.plot mag(v(vin_p, vin_n))
-"}
+
+.control
+plot mag(v(vin_p, vin_n))
+.endc"}
 C {opamp_single_stage.sym} -1250 -600 0 0 {name=x1}
 C {devices/opin.sym} -1050 -600 0 0 {name=p1 lab=VOUT}
 C {devices/res.sym} -1560 -390 0 0 {name=R1
