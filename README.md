@@ -1,4 +1,4 @@
-### Single-Stage Op-Amp Performance Summary
+## Single-Stage Op-Amp Performance Summary
 
 
 | Metric            | Value     | Target   | Result |
@@ -12,7 +12,7 @@
 | Bandwidth (3 dB)  | 0.143 MHz | —        | — |
 | GBW               | 9.11 MHz  | —        | — |
 
-PASS/FAIL: TBD
+**Overall PASS/FAIL:** **TBD**
 
 ## UWASIC Design Template
 
