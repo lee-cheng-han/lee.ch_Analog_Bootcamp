@@ -48,5 +48,5 @@ ac dec 100 1 1e6
 plot 20*log10(mag(v(vout)))
 .endc
 "}
-C {opamp_single_stage.sym} 160 150 0 0 {name=x2}
 C {devices/opin.sym} 390 150 0 0 {name=p1 lab=VOUT}
+C {opamp_single_stage.sym} 160 150 0 0 {name=x1}

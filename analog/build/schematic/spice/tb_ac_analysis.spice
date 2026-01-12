@@ -7,7 +7,7 @@ VCM net2 GND dc 0.9 ac 0
 R2 net3 net2 1M m=1
 R3 net4 net2 1M m=1
 VDIFF net4 net3 dc 0 ac 1
-x2 net1 VOUT net3 net4 net5 opamp_single_stage
+x1 net1 VOUT net3 net4 net5 opamp_single_stage
 **** begin user architecture code
 
 .param mc_mm_switch=0
