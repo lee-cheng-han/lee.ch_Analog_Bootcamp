@@ -12,7 +12,7 @@
 | Bandwidth (3 dB)  | 1.05 MHz  | —        | — |
 | GBW               | 31 MHz    | —        | — |
 
-**Overall PASS/FAIL:** **TBD**
+**Overall PASS/FAIL:** **PASS**
 
 ## UWASIC Design Template
 
