@@ -39,45 +39,42 @@ C {devices/gnd.sym} -330 140 1 0 {name=l2 lab=GND}
 C {devices/gnd.sym} -150 0 1 0 {name=l3 lab=GND}
 C {sky130_fd_pr/corner.sym} 340 -70 0 0 {name=CORNER only_toplevel=false corner=tt}
 C {devices/vsource.sym} -80 140 2 0 {value="dc 0 ac 1" name=VDIFF}
-C {devices/code_shown.sym} 350 240 0 0 {name=s2
-only_toplevel=true
-value= "
-* (your circuit here)
-
-.ac dec 100 1 100Meg
-
-.control
-  set keepmeas
-
-  * Differential: VDIFF on, VCM off
-  alter @VCM[acmag]=0
-  alter @VDIFF[acmag]=1
-  run
-  meas ac ad_db FIND vdb(VOUT) AT=1
-
-  * Common-mode: VCM on, VDIFF off
-  alter @VCM[acmag]=1
-  alter @VDIFF[acmag]=0
-  run
-  meas ac acm_db FIND vdb(VOUT) AT=1
-
-.endc 
-"}
 C {devices/opin.sym} 390 150 0 0 {name=p1 lab=VOUT}
 C {opamp_single_stage.sym} 160 150 0 0 {name=x1}
-C {devices/code_shown.sym} -160 400 0 0 {name=s1
+C {devices/code_shown.sym} 430 240 0 0 {name=s1
+only_toplevel=true
+value= " 
+.dc VDIFF -1m 1m 10u
+
+* ---- Measurements ----
+* Output at +ΔVdiff
+.meas dc vout_hi FIND v(vout) AT=1m
+
+* Output at −ΔVdiff
+.meas dc vout_lo FIND v(vout) AT=-1m
+
+* DC differential gain (linear)
+.meas dc Ad_lin PARAM='(vout_hi - vout_lo)/(2m)'
+
+* DC differential gain (dB)  <-- THIS IS WHAT YOU WANT
+.meas dc Ad_mag PARAM='abs(Ad_lin)'
+.meas dc Ad_dB  PARAM='20*ln(Ad_mag)/ln(10)'
+
+.end
+"}
+C {devices/code_shown.sym} -380 370 0 0 {name=s2
+4name=s1
 only_toplevel=true
 value= " 
 .ac dec 100 1 100Meg
 .control
 run
 
---- Open-loop DC gain ---
 meas ac A0_db FIND vdb(VOUT) AT=1
 
---- 3 dB bandwidth ---
 meas ac BW FIND frequency WHEN vdb(VOUT)=A0_db-3
 
 plot vdb(VOUT)
 .endc
+"
 "}

@@ -3,9 +3,9 @@
 
 | Metric            | Value     | Target   | Result |
 |-------------------|-----------|----------|--------|
-| DC Gain           | 29.1 dB   | ≥ 20 dB  | Pass |
+| DC Gain           | 29.5 dB   | ≥ 20 dB  | Pass |
 | Input Offset      | 0.5  mV   | ≤ 5 mV   | Pass |
-| CMRR              | 40.45 dB  | ≥ 40 dB  | Pass |
+| CMRR              | 51.81 dB  | ≥ 40 dB  | Pass |
 | Input Impedance   | 5*10^6 MΩ | ≥ 1 MΩ   | Pass |
 | Output Impedance  | 0.588 kΩ  | ≤ 1 kΩ   | Pass |
 | Power Consumption | 0.434 mW  | ≤ 5 mW   | Pass |

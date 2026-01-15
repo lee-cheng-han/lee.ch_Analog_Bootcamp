@@ -1,13 +1,15 @@
-** sch_path: /home/leech/lee.ch_Analog_Bootcamp/analog/schematics/testbenches/tb_ac_analysis.sch
-**.subckt tb_ac_analysis VOUT
+** sch_path: /home/leech/lee.ch_Analog_Bootcamp/analog/schematics/testbenches/tb_cmrr_analysis.sch
+**.subckt tb_cmrr_analysis VOUT
 *.opin VOUT
+x1 net1 VOUT net4 net5 net2 opamp_single_stage
+R2 net5 net6 1k m=1
+R1 VOUT net5 10k m=1
+R3 net4 GND 10k m=1
+R4 net4 net3 1k m=1
+V1 net3 GND dc 0 ac 1
 VDD net1 GND 1.8
-VSS net5 GND 0
-VCM net2 GND dc 0.9 ac 0
-R2 net3 net2 1M m=1
-R3 net4 net2 1M m=1
-VDIFF net4 net3 dc 0 ac 1
-x1 net1 VOUT net3 net4 net5 opamp_single_stage
+VSS net2 GND 0
+V2 net6 GND dc 0 ac 1
 **** begin user architecture code
 
 .param mc_mm_switch=0
@@ -19,37 +21,15 @@ x1 net1 VOUT net3 net4 net5 opamp_single_stage
 
 
 
-.dc VDIFF -1m 1m 10u
 
-* ---- Measurements ----
-* Output at +ΔVdiff
-.meas dc vout_hi FIND v(vout) AT=1m
+.param Ad_dB  = 29.5
+.param Ad_lin = '10**(Ad_dB/20)'
 
-* Output at −ΔVdiff
-.meas dc vout_lo FIND v(vout) AT=-1m
+.ac dec 100 1 1e9
 
-* DC differential gain (linear)
-.meas dc Ad_lin PARAM='(vout_hi - vout_lo)/(2m)'
-
-* DC differential gain (dB)  <-- THIS IS WHAT YOU WANT
-.meas dc Ad_mag PARAM='abs(Ad_lin)'
-.meas dc Ad_dB  PARAM='20*ln(Ad_mag)/ln(10)'
-
-.end
-
-
-
- 
-.ac dec 100 1 100Meg
-.control
-run
-
-meas ac A0_db FIND vdb(VOUT) AT=1
-
-meas ac BW FIND frequency WHEN vdb(VOUT)=A0_db-3
-
-plot vdb(VOUT)
-.endc
+* Magnitude of VOUT at 1 Hz (≈ DC)
+.meas ac Acm_lin  FIND vm(vout) AT=1
+.meas ac CMRR_dB  PARAM='20*log10(Ad_lin/Acm_lin)'
 
 
 **** end user architecture code
