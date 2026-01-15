@@ -3,14 +3,14 @@
 
 | Metric            | Value     | Target   | Result |
 |-------------------|-----------|----------|--------|
-| DC Gain           | ___ dB    | ≥ 20 dB  | Pass |
-| Input Offset      | ___ mV    | ≤ 5 mV   | Pass |
-| CMRR              | ___ dB    | ≥ 40 dB  | Pass |
-| Input Impedance   | ___ MΩ    | ≥ 1 MΩ   | TBD |
-| Output Impedance  | ___ kΩ    | ≤ 1 kΩ   | Fail |
-| Power Consumption | ___ mW    | ≤ 5 mW   | Pass |
-| Bandwidth (3 dB)  | ___ MHz   | —        | — |
-| GBW               | ___ MHz   | —        | — |
+| DC Gain           | 29.1 dB   | ≥ 20 dB  | Pass |
+| Input Offset      | 0.5  mV   | ≤ 5 mV   | Pass |
+| CMRR              | 40.45 dB  | ≥ 40 dB  | Pass |
+| Input Impedance   | 5*10^6 MΩ | ≥ 1 MΩ   | Pass |
+| Output Impedance  | 0.588 kΩ  | ≤ 1 kΩ   | Pass |
+| Power Consumption | 0.434 mW  | ≤ 5 mW   | Pass |
+| Bandwidth (3 dB)  | 1.05 MHz  | —        | — |
+| GBW               | 31 MHz    | —        | — |
 
 **Overall PASS/FAIL:** **TBD**
 

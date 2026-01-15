@@ -1,12 +1,11 @@
-** sch_path: /home/leech/lee.ch_Analog_Bootcamp/analog/schematics/testbenches/tb_impedance.sch
-**.subckt tb_impedance VOUT
+** sch_path: /home/leech/lee.ch_Analog_Bootcamp/analog/schematics/testbenches/tb_outimpedence.sch
+**.subckt tb_outimpedence VOUT
 *.opin VOUT
+x1 net1 VOUT net3 GND net2 opamp_single_stage
 VDD net1 GND 1.8
 VSS net2 GND 0
-x1 net1 VOUT VIN_P net3 net2 opamp_single_stage
-V1 VIN_P GND dc 0 ac 1
-R2 net3 GND 1k m=1
-R1 VOUT net3 10k m=1
+V1 net3 GND dc 0.9 ac 0
+I0 GND VOUT dc 0 ac 1
 **** begin user architecture code
 
 .param mc_mm_switch=0
@@ -18,11 +17,13 @@ R1 VOUT net3 10k m=1
 
 
 
+.ac dec 10 1 10G
 .control
-ac dec 100 1 1e9
-let Zin = mag(v(vin_p)/i(V1))
-plot Zin
+run
+let zout = abs(v(vout))
+meas ac Zout_cl MAX zout FROM=1 TO=10
 .endc
+
 
 
 

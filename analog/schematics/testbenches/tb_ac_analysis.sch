@@ -1,5 +1,4 @@
-v {xschem version=3.4.4 file_version=1.2
-}
+v {xschem version=3.4.7 file_version=1.2}
 G {}
 K {}
 V {}
@@ -40,13 +39,45 @@ C {devices/gnd.sym} -330 140 1 0 {name=l2 lab=GND}
 C {devices/gnd.sym} -150 0 1 0 {name=l3 lab=GND}
 C {sky130_fd_pr/corner.sym} 340 -70 0 0 {name=CORNER only_toplevel=false corner=tt}
 C {devices/vsource.sym} -80 140 2 0 {value="dc 0 ac 1" name=VDIFF}
-C {devices/code_shown.sym} 230 -40 0 0 {name=s2
+C {devices/code_shown.sym} 350 240 0 0 {name=s2
 only_toplevel=true
-value= " 
+value= "
+* (your circuit here)
+
+.ac dec 100 1 100Meg
+
 .control
-ac dec 100 1 1e6
-plot 20*log10(mag(v(vout)))
-.endc
+  set keepmeas
+
+  * Differential: VDIFF on, VCM off
+  alter @VCM[acmag]=0
+  alter @VDIFF[acmag]=1
+  run
+  meas ac ad_db FIND vdb(VOUT) AT=1
+
+  * Common-mode: VCM on, VDIFF off
+  alter @VCM[acmag]=1
+  alter @VDIFF[acmag]=0
+  run
+  meas ac acm_db FIND vdb(VOUT) AT=1
+
+.endc 
 "}
 C {devices/opin.sym} 390 150 0 0 {name=p1 lab=VOUT}
 C {opamp_single_stage.sym} 160 150 0 0 {name=x1}
+C {devices/code_shown.sym} -160 400 0 0 {name=s1
+only_toplevel=true
+value= " 
+.ac dec 100 1 100Meg
+.control
+run
+
+--- Open-loop DC gain ---
+meas ac A0_db FIND vdb(VOUT) AT=1
+
+--- 3 dB bandwidth ---
+meas ac BW FIND frequency WHEN vdb(VOUT)=A0_db-3
+
+plot vdb(VOUT)
+.endc
+"}
